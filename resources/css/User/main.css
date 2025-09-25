@@ -10,7 +10,7 @@ body {
   color: black;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom right, #eff6ff, #fce7f3, #f3e8ff);
+  background: linear-gradient(to bottom right, #eff6ff, #fee2e2, #fecaca); /* light red tones */
   overflow-x: hidden; /* ensure horizontal scroll is hidden */
   overflow-y: auto;   /* vertical scroll allowed if needed */
 }
@@ -31,16 +31,48 @@ body::after {
 body::before {
   width: 600px;
   height: 600px;
-  background: #60a5fa;
+  background: #60a5fa; /* keep blue for contrast */
   top: 50%;
-  left: 15%;         /* adjust left to prevent horizontal overflow */
+  left: 15%;         
   transform: translate(-50%, -50%);
 }
 
 body::after {
   width: 500px;
   height: 500px;
-  background: #f472b6;
+  background: #ef4444; /* red instead of pink */
   top: 25%;
-  right: 15%;        /* adjust right to prevent horizontal overflow */
+  right: 15%;        
 }
+
+ /* Hexagon shape */
+    .hexagon {
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fadeIn {
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    /* Responsive fix for small hexagons */
+    @media (max-width: 768px) {
+      .hexagon-small {
+        position: static !important;
+        margin: 1rem auto !important;
+        width: 8rem !important;
+        height: 8rem !important;
+      }
+    }
+

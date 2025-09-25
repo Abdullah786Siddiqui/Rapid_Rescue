@@ -27,14 +27,14 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        $url = '/user/home';
+        $url = '/';
         if ($request->user()->role === 'admin') {
             $url = '/admin/dashboard';
         } else if ($request->user()->role === 'driver') {
             $url = '/driver/dashboard';
-        } 
+        }
 
-        return redirect()->intended($url);
+        return redirect()->intended($url)->with('login', 'Login successfuly ' . Auth::user()->name . '.');
     }
 
     /**
@@ -48,6 +48,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/user/home');
+        return redirect('/')->with('logout', 'logged out successfully.');
     }
 }

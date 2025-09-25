@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    overflow-y: auto;
+    height: 100vh; /* poori screen height */
+}

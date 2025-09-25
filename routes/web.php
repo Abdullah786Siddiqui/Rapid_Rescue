@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DriverController as AdminDriverController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\ProfileController;
@@ -21,7 +22,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('adminDahboard');
+    // Drivers CRUD routes
+    Route::resource('/admin/drivers',AdminDriverController::class);
+
 });
 
 Route::middleware(['auth', 'role:driver'])->group(function () {
@@ -30,7 +34,7 @@ Route::middleware(['auth', 'role:driver'])->group(function () {
 
 Route::middleware(['auth', 'role:user'])->group(function () {});
 
-Route::get('/user/home', [UserController::class, 'index']);
+Route::get('/', [UserController::class, 'index'])->name('home');
 
 
 require __DIR__ . '/auth.php';
