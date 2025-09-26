@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('license_expiry')->nullable();
             $table->string('driverLicenseUrl')->nullable();
             $table->string('driverNicUrl')->nullable();
+            $table->string('driverProfileUrl')->nullable();
             $table->string('phone')->nullable();        // optional separate contact
             $table->string('address')->nullable();      // Home address
             $table->date('dob')->nullable();

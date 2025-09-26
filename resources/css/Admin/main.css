@@ -6,3 +6,13 @@ body {
     overflow-y: auto;
     height: 100vh; /* poori screen height */
 }
+ .container-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .icon {
+            width: 20px;
+            height: 20px;
+            color: #4b5563;
+        }

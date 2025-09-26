@@ -23,7 +23,7 @@
       </button>
 
      <!-- Logo -->
-<a href="#" class="flex items-center text-xl font-bold tracking-tight text-gray-800 dark:text-white  transition-colors">
+<a href="{{ route('adminDashboard') }}" class="flex items-center text-xl font-bold tracking-tight text-gray-800 dark:text-white  transition-colors">
   Rapid <span class="text-blue-600 dark:text-blue-400 ml-1">Rescue</span>
 </a>
 

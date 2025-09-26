@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('adminDahboard');
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('adminDashboard');
     // Drivers CRUD routes
     Route::resource('/admin/drivers',AdminDriverController::class);
 

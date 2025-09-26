@@ -13,6 +13,7 @@ class DriverProfile extends Model
         'phone',
         'driverLicenseUrl',
         'driverNicUrl',
+        'driverProfileUrl',
         'address',
         'dob',
         'hiredate',
@@ -23,7 +24,7 @@ class DriverProfile extends Model
      // Add this:
     public function user()
     {
-        return $this->belongsTo(User::class); // assumes your User model is App\Models\User
+        return $this->belongsTo(User::class); 
     }
 
     public function ambulance() {
