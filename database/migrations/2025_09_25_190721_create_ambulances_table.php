@@ -24,14 +24,12 @@ return new class extends Migration
 
             // Status & location
             $table->enum('status', ['AVAILABLE', 'BUSY', 'MAINTENANCE'])->default('AVAILABLE');
-            $table->decimal('current_lat', 10, 7)->nullable();
-            $table->decimal('current_lng', 10, 7)->nullable();
 
             $table->timestamps();
 
             // Optional: indexing for performance
             $table->index('status');
-            $table->index(['current_lat', 'current_lng']);
+        
         });
     }
 

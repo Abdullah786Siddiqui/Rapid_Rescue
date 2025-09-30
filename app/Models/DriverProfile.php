@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DriverProfile extends Model
 {
-     protected $fillable = [
+    protected $fillable = [
         'user_id',
         'license_number',
         'license_expiry',
@@ -17,17 +17,17 @@ class DriverProfile extends Model
         'address',
         'dob',
         'hiredate',
-        'status',
-        'ambulance_id'
+        'duty_status',
+        // 'ambulance_id'
     ];
 
-     // Add this:
+    // Add this:
     public function user()
     {
-        return $this->belongsTo(User::class); 
+        return $this->belongsTo(User::class);
     }
-
-    public function ambulance() {
-    return $this->belongsTo(Ambulance::class);
-}
+    public function driver_locations()
+    {
+        return $this->hasOne(Driverlocation::class, 'driver_id', 'id');
+    }
 }

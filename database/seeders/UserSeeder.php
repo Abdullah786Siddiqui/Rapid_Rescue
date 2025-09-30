@@ -26,11 +26,6 @@ class UserSeeder extends Seeder
             'password' => Hash::make(123456),
             'role' => 'admin'
         ]);
-        $user = User::create([
-            'name' => 'driver',
-            'email' => 'driver@gmail.com',
-            'password' => Hash::make(123456),
-            'role' => 'driver'
-        ]);
+       
     }
 }

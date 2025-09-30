@@ -36,6 +36,8 @@
             @yield('admin')
         </main>
     </div>
+     {{-- Tailwind JS --}}
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
      {{-- Flowbite JS --}}
 <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>

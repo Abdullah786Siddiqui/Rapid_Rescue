@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('address')->nullable();      // Home address
             $table->date('dob')->nullable();
             $table->date('hiredate')->nullable();
-              $table->enum('status', [
+              $table->enum('duty_status', [
                 'OFF_DUTY',
                 'AVAILABLE',
                 'ASSIGNED',

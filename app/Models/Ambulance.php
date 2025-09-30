@@ -14,8 +14,6 @@ class Ambulance extends Model
         'number_plate',
         'model',
         'status',
-        'current_lat',
-        'current_lng',
         'description'
     ];
 

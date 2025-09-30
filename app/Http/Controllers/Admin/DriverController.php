@@ -13,7 +13,8 @@ class DriverController extends Controller
      */
     public function index()
     {
-        return view('admin.drivers.drivers');
+        $drivers = User::where('role', 'driver')->with('driverProfile')->get();
+        return view('admin.drivers.drivers', compact('drivers'));
     }
 
     /**
@@ -21,7 +22,8 @@ class DriverController extends Controller
      */
     public function create()
     {
-        return view('admin.drivers.addDrivers');
+        $drivers = User::where('role', 'driver')->with('driverProfile')->get();
+        return view('admin.drivers.addDrivers', compact('drivers'));
     }
 
     /**
@@ -43,9 +45,9 @@ class DriverController extends Controller
             'driverProfileUrl'     => 'required|file|mimes:jpg,jpeg,png,pdf|max:5120',
             'phone'            => 'required|string|max:20',
             'address'          => 'required|string|max:255',
-           'dob' => 'required|date|before_or_equal:' . now()->subYears(18)->toDateString(),
+            'dob' => 'required|date|before_or_equal:' . now()->subYears(18)->toDateString(),
             'hiredate'         => 'required|date',
-            'status'           => 'required|in:OFF_DUTY,AVAILABLE,ASSIGNED,IN_TRANSIT,UNAVAILABLE',
+            'duty_status'           => 'required|in:OFF_DUTY,AVAILABLE,ASSIGNED,IN_TRANSIT,UNAVAILABLE',
         ]);
 
         $licensePath = $request->hasFile('driverLicenseUrl')
@@ -55,7 +57,7 @@ class DriverController extends Controller
         $nicPath = $request->hasFile('driverNicUrl')
             ? $request->file('driverNicUrl')->store('drivers/nics', 'public')
             : null;
-            $ProfilePath = $request->hasFile('driverProfileUrl')
+        $ProfilePath = $request->hasFile('driverProfileUrl')
             ? $request->file('driverProfileUrl')->store('drivers/profile', 'public')
             : null;
 
@@ -79,7 +81,7 @@ class DriverController extends Controller
             'address'          => $request->address,
             'dob'              => $request->dob,
             'hiredate'         => $request->hiredate,
-            'status'           => $request->status,
+            'duty_status'           => $request->duty_status,
         ]);
 
 
@@ -115,6 +117,9 @@ class DriverController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $driver = User::findOrFail($id); // Driver exist check
+        $driver->delete();
+
+        return redirect()->back()->with('driverdel', 'Driver Deleted successfully!');
     }
 }

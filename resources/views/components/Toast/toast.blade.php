@@ -1,32 +1,29 @@
-@if(session('login') || session('logout') || session('driver'))
-<div id="toast-welcome"
-     class="fixed inset-0 flex items-start top-2 justify-center z-[9999]">
-    <div class="flex items-center space-x-3 px-6 py-2  
-         {{ session('login') || session('driver')   ? 'bg-green-100' : 'bg-red-100' }} 
-         rounded-xl shadow-lg transform -translate-y-10 scale-90 opacity-0 
-         transition-all duration-500 ease-out"
-         role="alert">
+@if(session()->has('login') || session()->has('logout') || session()->has('driver') || session()->has('driverdel'))
+@php
+    // Session messages aur types handle karna
+    $toast = [
+        'message' => session('login') ?? session('logout') ?? session('driver') ?? session('driverdel'),
+        'type'    => session('login') || session('driver') ? 'success' : 'error',
+        'icon'    => session('login') ? '🎉' : (session('logout') ? '🚪' : '✅')
+    ];
+@endphp
+
+<div id="toast-welcome" class="fixed inset-0 flex items-start justify-center top-2 z-[9999]">
+    <div class="flex items-center space-x-3 px-6 py-2 
+        {{ $toast['type'] === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}
+        rounded-xl shadow-lg transform -translate-y-10 scale-90 opacity-0 
+        transition-all duration-500 ease-out"
+        role="alert">
 
         <!-- Icon -->
-        <div>
-            @if(session('login'))
-                🎉 
-            @elseif(session('logout'))
-                🚪
-                 @elseif(session('driver'))
-                 ✅
-            @endif
-        </div>
+        <div>{{ $toast['icon'] }}</div>
 
         <!-- Message -->
-        <div class="text-lg font-medium {{ session('login') || session('driver')  ? 'text-green-800' : 'text-red-800' }}">
-            {{ session('login') ?? session('logout') ?? session('driver')  }}
+        <div class="text-lg font-medium">
+            {{ $toast['message'] }}
         </div>
     </div>
 </div>
-
-
-
 
 <script>
     const toast = document.querySelector('#toast-welcome div');

@@ -18,7 +18,7 @@
 
             <!-- Buttons -->
             <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 sm:gap-6 mt-4">
-                <a href="{{ url('/map') }}"
+                <a href="{{ route('map') }}"
    class="bg-gradient-to-r from-red-700 via-red-600 to-red-500 
           text-white font-bold rounded-2xl shadow-lg shadow-red-300/50
           px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-4 
@@ -174,99 +174,94 @@
     </div>
 
     <!-- Doctors Grid -->
-    <div class="grid  md:grid-cols-2   max-sm:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-      <!-- Doctor Card -->
-      <div class="relative bg-white rounded-2xl overflow-hidden shadow-lg transform transition duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-2xl group cursor-pointer">
+<div class="grid md:grid-cols-2 max-sm:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+    <div class="relative bg-white rounded-2xl overflow-hidden shadow-lg transform transition duration-500 hover:-translate-y-3 hover:shadow-2xl group cursor-pointer">
         <div class="relative h-80 sm:h-96 overflow-hidden">
-          <img src="https://i.pinimg.com/736x/ef/d0/94/efd09480361a7ede8ef71bd97eedb2c5.jpg"
-               alt="Stella O'Brien"
-               class="w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:blur-sm">
-          
-          <!-- Info -->
-          <div class="absolute bottom-0 left-0 right-0 p-6 z-10 text-white">
-            <h3 class="text-lg sm:text-xl font-bold">Stella O'Brien</h3>
-            <p class="text-sm sm:text-base font-light text-gray-200">Anesthesiologist</p>
-          </div>
-          
-          <!-- Overlay + Button -->
-          <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-500">
-           <button 
-  class="px-6 py-2 rounded-xl font-semibold text-white 
-         bg-transparent backdrop-blur-md border border-white/30 
-         shadow-md hover:scale-110 
-         transition-all duration-500">
-  View More
-</button>
-          </div>
+            <img src="https://i.pinimg.com/736x/ef/d0/94/efd09480361a7ede8ef71bd97eedb2c5.jpg"
+                alt="Stella O'Brien"
+                class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+            
+            <div class="absolute bottom-0 left-0 right-0 p-6 z-10 text-white">
+                <h3 class="text-lg sm:text-xl font-bold">Stella O'Brien</h3>
+                <p class="text-sm sm:text-base font-light text-gray-200">Anesthesiologist</p>
+            </div>
+            
+            <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-500">
+               <button 
+                 class="px-6 py-2 rounded-xl font-semibold text-white 
+                       bg-transparent backdrop-blur-md border border-white/30 
+                       shadow-md hover:scale-110 
+                       transition-all duration-500">
+                 View More
+               </button>
+            </div>
         </div>
-      </div>
-
-      <!-- Repeat for Other Doctors -->
-      <div class="relative bg-white rounded-2xl overflow-hidden shadow-lg transform transition duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-2xl group cursor-pointer">
-        <div class="relative h-80 sm:h-96 overflow-hidden">
-          <img src="https://i.pinimg.com/1200x/6c/0d/88/6c0d884d00a9a3ee52662ca5ab0d719b.jpg"
-               alt="John Doe"
-               class="w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:blur-sm">
-          <div class="absolute bottom-0 left-0 right-0 p-6 z-10 text-white">
-            <h3 class="text-lg sm:text-xl font-bold">John Doe</h3>
-            <p class="text-sm sm:text-base font-light text-gray-200">Cardiac Surgeon</p>
-          </div>
-          <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-500">
-           <button 
-  class="px-6 py-2 rounded-xl font-semibold text-white 
-         bg-transparent backdrop-blur-md border border-white/30 
-         shadow-md hover:scale-110 
-         transition-all duration-500">
-  View More
-</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="relative bg-white rounded-2xl overflow-hidden shadow-lg transform transition duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-2xl group cursor-pointer">
-        <div class="relative h-80 sm:h-96 overflow-hidden">
-          <img src="https://i.pinimg.com/736x/7a/58/b6/7a58b6f7d3bf0ef94af6a4af305d9a23.jpg"
-               alt="Steven Byrne"
-               class="w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:blur-sm">
-          <div class="absolute bottom-0 left-0 right-0 p-6 z-10 text-white">
-            <h3 class="text-lg sm:text-xl font-bold">Steven Byrne</h3>
-            <p class="text-sm sm:text-base font-light text-gray-200">Pediatrician</p>
-          </div>
-          <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-500">
-          <button 
-  class="px-6 py-2 rounded-xl font-semibold text-white 
-         bg-transparent backdrop-blur-md border border-white/30 
-         shadow-md hover:scale-110 
-         transition-all duration-500">
-  View More
-</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="relative bg-white rounded-2xl overflow-hidden shadow-lg transform transition duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-2xl group cursor-pointer">
-        <div class="relative h-80 sm:h-96 overflow-hidden">
-          <img src="https://i.pinimg.com/736x/59/8c/80/598c809632f9de89259c069ef1d9bee8.jpg"
-               alt="Lisa Doe"
-               class="w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:blur-sm">
-          <div class="absolute bottom-0 left-0 right-0 p-6 z-10 text-white">
-            <h3 class="text-lg sm:text-xl font-bold">Lisa Doe</h3>
-            <p class="text-sm sm:text-base font-light text-gray-200">Psychologist</p>
-          </div>
-          <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-500">
-      <button 
-  class="px-6 py-2 rounded-xl font-semibold text-white 
-         bg-transparent backdrop-blur-md border border-white/30 
-         shadow-md hover:scale-110 
-         transition-all duration-500">
-  View More
-</button>
-
-
-          </div>
-        </div>
-      </div>
     </div>
+
+    <div class="relative bg-white rounded-2xl overflow-hidden shadow-lg transform transition duration-500 hover:-translate-y-3 hover:shadow-2xl group cursor-pointer">
+        <div class="relative h-80 sm:h-96 overflow-hidden">
+            <img src="https://i.pinimg.com/1200x/6c/0d/88/6c0d884d00a9a3ee52662ca5ab0d719b.jpg"
+                alt="John Doe"
+                class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+            <div class="absolute bottom-0 left-0 right-0 p-6 z-10 text-white">
+                <h3 class="text-lg sm:text-xl font-bold">John Doe</h3>
+                <p class="text-sm sm:text-base font-light text-gray-200">Cardiac Surgeon</p>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                <button 
+                  class="px-6 py-2 rounded-xl font-semibold text-white 
+                        bg-transparent backdrop-blur-md border border-white/30 
+                        shadow-md hover:scale-110 
+                        transition-all duration-500">
+                  View More
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="relative bg-white rounded-2xl overflow-hidden shadow-lg transform transition duration-500 hover:-translate-y-3 hover:shadow-2xl group cursor-pointer">
+        <div class="relative h-80 sm:h-96 overflow-hidden">
+            <img src="https://i.pinimg.com/736x/7a/58/b6/7a58b6f7d3bf0ef94af6a4af305d9a23.jpg"
+                alt="Steven Byrne"
+                class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+            <div class="absolute bottom-0 left-0 right-0 p-6 z-10 text-white">
+                <h3 class="text-lg sm:text-xl font-bold">Steven Byrne</h3>
+                <p class="text-sm sm:text-base font-light text-gray-200">Pediatrician</p>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                <button 
+                  class="px-6 py-2 rounded-xl font-semibold text-white 
+                        bg-transparent backdrop-blur-md border border-white/30 
+                        shadow-md hover:scale-110 
+                        transition-all duration-500">
+                  View More
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="relative bg-white rounded-2xl overflow-hidden shadow-lg transform transition duration-500 hover:-translate-y-3 hover:shadow-2xl group cursor-pointer">
+        <div class="relative h-80 sm:h-96 overflow-hidden">
+            <img src="https://i.pinimg.com/736x/59/8c/80/598c809632f9de89259c069ef1d9bee8.jpg"
+                alt="Lisa Doe"
+                class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+            <div class="absolute bottom-0 left-0 right-0 p-6 z-10 text-white">
+                <h3 class="text-lg sm:text-xl font-bold">Lisa Doe</h3>
+                <p class="text-sm sm:text-base font-light text-gray-200">Psychologist</p>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                <button 
+                  class="px-6 py-2 rounded-xl font-semibold text-white 
+                        bg-transparent backdrop-blur-md border border-white/30 
+                        shadow-md hover:scale-110 
+                        transition-all duration-500">
+                  View More
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
  <div class="flex justify-end mt-10">
   <button 
@@ -469,7 +464,12 @@
 
     </div>
   </div>
-</section>
+</section >
+
+
+
+
+
 {{-- Footer Section --}}
 
 <footer class="bg-gradient-to-r from-blue-100 via-white to-red-100 text-gray-800 w-full p-10 md:p-14 lg:p-20" data-scroll-section>

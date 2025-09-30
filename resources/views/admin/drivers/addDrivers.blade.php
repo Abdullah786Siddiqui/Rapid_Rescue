@@ -8,7 +8,7 @@
         <!-- Header Section -->
       <div class="flex flex-row lg:flex-row  justify-between items-center md:flex-col md:gap-2 sm:flex-col sm:gap-2 max-sm:flex-col    border border-gray-200 p-3 sm:p-3 shadow-md  rounded-2xl">
     <div>
-        <h1 class="text-lg sm:text-xl lg:text-left  md:text-center max-sm:text-center sm:text-center font-bold text-gray-900 ">Add New Driver</h1>
+        <h1 class="text-lg sm:text-lg lg:text-left  md:text-center max-sm:text-center sm:text-center font-bold text-gray-900 ">Add New Driver</h1>
         <p class="mt-1 text-xs sm:text-sm text-gray-500">Register a new driver and their vehicle details.</p>
     </div>
     <div class="mt-3 sm:mt-0 flex flex-row  gap-2 ">
@@ -124,19 +124,19 @@
 
 <div class="flex flex-col">
   <label for="status" class="text-sm font-semibold text-gray-700 mb-2">Status</label>
-  <select name="status" id="status" 
+  <select name="duty_status" id="status" 
     class="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500">
         
     <option hidden value="">-- Select Status --</option>
-
-    <option value="AVAILABLE" {{ old('status') == 'AVAILABLE' ? 'selected' : '' }}>Available</option>
-    <option value="OFF_DUTY" {{ old('status') == 'OFF_DUTY' ? 'selected' : '' }} disabled>Off Duty</option>
-    <option value="ASSIGNED" {{ old('status') == 'ASSIGNED' ? 'selected' : '' }} disabled>Assigned</option>
-    <option value="IN_TRANSIT" {{ old('status') == 'IN_TRANSIT' ? 'selected' : '' }} disabled>In Transit</option>
-    <option value="UNAVAILABLE" {{ old('status') == 'UNAVAILABLE' ? 'selected' : '' }} disabled>Unavailable</option>
+ <option value="OFF_DUTY" {{ old('duty_status') == 'OFF_DUTY' ? 'selected' : '' }} >Off Duty</option>
+    <option disabled value="AVAILABLE" {{ old('duty_status') == 'AVAILABLE' ? 'selected' : '' }}>Available</option>
+   
+    <option value="ASSIGNED" {{ old('duty_status') == 'ASSIGNED' ? 'selected' : '' }} disabled>Assigned</option>
+    <option value="IN_TRANSIT" {{ old('duty_status') == 'IN_TRANSIT' ? 'selected' : '' }} disabled>In Transit</option>
+    <option value="UNAVAILABLE" {{ old('duty_status') == 'UNAVAILABLE' ? 'selected' : '' }} disabled>Unavailable</option>
   </select>
 
-  @error('status')
+  @error('duty_status')
       <span class="text-sm text-red-600 mt-1">{{ $message }}</span>
   @enderror
 </div>
@@ -278,68 +278,52 @@ function previewImage(event, previewId) {
 
 
         <!-- Related Drivers Card -->
-        <div class="container-card rounded-xl p-5 bg-white shadow-sm">
+       <div class="container-card rounded-xl p-5 bg-white shadow-sm">
     <!-- Header -->
     <div class="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">
         <h2 class="text-lg font-semibold text-gray-900">Related Drivers</h2>
-        <a href="#" class="px-3 py-1.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+        <a href="{{ route('drivers.index') }}" 
+           class="px-3 py-1.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
             View All
         </a>
     </div>
 
     <!-- Driver List -->
     <div class="flex flex-col gap-3">
-        <!-- Single Driver Item -->
-        <div class="flex justify-between items-center p-2 rounded-lg hover:bg-gray-50 transition">
-            <div class="flex items-center gap-3">
-                <!-- Icon/Avatar -->
-                <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-sm font-medium">
-                    A
-                </div>
-                <div>
-                    <div class="font-medium text-gray-900">Ali Khan</div>
-                    <div class="text-xs text-gray-500">License: DL-12345</div>
-                </div>
-            </div>
-            <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100 transition">
-                <!-- delete icon -->
-               <i class="ri-delete-bin-6-line"></i>
-            </button>
-        </div>
+        @forelse ($drivers as $driver)
+            <div class="flex justify-between items-center p-2 rounded-lg hover:bg-gray-50 transition">
+                <div class="flex items-center gap-3">
+                    <!-- Profile Image -->
+                    <img src="{{ $driver->driverProfile && $driver->driverProfile->driverProfileUrl 
+                                ? asset('storage/' . $driver->driverProfile->driverProfileUrl) 
+                                : asset('images/default-avatar.png') }}"
+                         alt="Driver Profile"
+                         class="w-10 h-10 rounded-full object-cover border border-gray-200">
 
-        <div class="flex justify-between items-center p-2 rounded-lg hover:bg-gray-50 transition">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-sm font-medium">
-                    S
+                    <!-- Driver Info -->
+                    <div>
+                        <div class="font-medium text-gray-900">{{ $driver->name }}</div>
+                        <div class="text-xs text-gray-500">
+                            License: {{ $driver->driverProfile->license_number ?? 'N/A' }}
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <div class="font-medium text-gray-900">Sara Ahmed</div>
-                    <div class="text-xs text-gray-500">License: DL-67890</div>
-                </div>
-            </div>
-            <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100 transition">
-                <i class="ri-delete-bin-6-line"></i>
-            </button>
-        </div>
 
-        <div class="flex justify-between items-center p-2 rounded-lg hover:bg-gray-50 transition">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-sm font-medium">
-                    H
-                </div>
-                <div>
-                    <div class="font-medium text-gray-900">Hamza Rafiq</div>
-                    <div class="text-xs text-gray-500">License: DL-54321</div>
-                </div>
+                <!-- View Button -->
+                <a href="{{ route('drivers.show', $driver->id) }}" 
+                   class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-blue-600 rounded-full hover:bg-gray-100 transition"
+                   title="View Driver">
+                    <i class="ri-eye-line text-lg"></i>
+                </a>
             </div>
-            <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-red-500 rounded-full hover:bg-gray-100 transition">
-             <i class="ri-delete-bin-6-line"></i>
-            </button>
-        </div>
+        @empty
+            <div class="text-center text-gray-500 text-sm py-6">
+                No related drivers found
+            </div>
+        @endforelse
     </div>
 </div>
 
-    </div>
 </div>
 
 

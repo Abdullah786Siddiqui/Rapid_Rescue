@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\Admin\DriverController as AdminDriverController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DriverController;
@@ -25,6 +26,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('adminDashboard');
     // Drivers CRUD routes
     Route::resource('/admin/drivers',AdminDriverController::class);
+ 
 
 });
 
@@ -35,6 +37,9 @@ Route::middleware(['auth', 'role:driver'])->group(function () {
 Route::middleware(['auth', 'role:user'])->group(function () {});
 
 Route::get('/', [UserController::class, 'index'])->name('home');
+Route::view('/map','website.map.map')->name('map');
+Route::get('/nearby-drivers', [DriverController::class, 'nearbyDrivers']);
+
 
 
 require __DIR__ . '/auth.php';
